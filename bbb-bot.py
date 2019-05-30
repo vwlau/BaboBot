@@ -3,8 +3,6 @@ from discord.ext import commands
 import asyncio
 import json
 
-#TOKEN = 'NDU0MTA4Mjk5MzU3NTg1NDI4.DgYRzw.qR4Sz16nN8RA-wvnROt3d2tAUvU'
-
 def config_load():
 
     with open('config.json', 'r', encoding='utf-8') as read_config:
