@@ -45,10 +45,12 @@ async def on_message(message):
     with open('db.json', 'r') as read_db:
         db = json.load(read_db)
 
+    '''
     #Find if this channel is anonymous
     anon = False
     if db[str(message.guild.id)][str(message.channel.id)] == 'a':
         anon = True
+    '''
 
     #get link dump channel
     #only looks for link dump channel in current message's guild
@@ -65,7 +67,7 @@ async def on_message(message):
     with open('db.json', 'w') as write_db:
         json.dump(db, write_db)
 
-
+    '''
     if(anon and message.content.startswith('%direct')):
         return
     elif(anon):
@@ -81,6 +83,7 @@ async def on_message(message):
                 await current_channel.send('( ͡° ͜ʖ ͡°).jpg')
         else:
             await current_channel.send(message.content)
+    '''
 
     #quick check to see if its worth waiting for an embed
     if(
@@ -281,7 +284,7 @@ async def dump(ctx, desig_chan : discord.TextChannel = None):
         json.dump(db, write_db)
 
     #print(json.dumps(db, indent = 4))
-
+'''
 @bot.command(pass_context = True)
 async def anon(ctx, desig_chan : discord.TextChannel = None):
 
@@ -305,6 +308,7 @@ async def anon(ctx, desig_chan : discord.TextChannel = None):
         json.dump(db, write_db)
 
     #print(json.dumps(db, indent = 4))
+'''
 
 #set a channel to be revealed
 '''@bot.command(pass_context = True)
@@ -369,7 +373,7 @@ async def info(ctx):
     color = discord.Color.dark_blue())
 
     embed.add_field(name = 'Link Dump Channel', value = dump, inline = True)
-    embed.add_field(name = 'Anonymous Channel(s)', value = anon, inline = True)
+    #embed.add_field(name = 'Anonymous Channel(s)', value = anon, inline = True)
     embed.add_field(name = 'Listened Channel(s)', value = listened, inline = True)
     embed.add_field(name = 'Ignored Channel(s)', value = ignored, inline = True)
 
@@ -389,7 +393,7 @@ async def help(ctx):
     embed.add_field(name = '%ping', value = 'Pong!', inline = False)
     embed.add_field(name = '%info', value = 'Tells you the listen state of each channel.', inline = False)
     embed.add_field(name = '%dump <channel>', value = 'Designates a link dump channel. There can only be one. Defaults to the channel it was typed in.', inline = False)
-    embed.add_field(name = '%anon <channel>', value = 'Designates an anonymous channel. Defaults to the channel it was typed in.', inline = False)
+    #embed.add_field(name = '%anon <channel>', value = 'Designates an anonymous channel. Defaults to the channel it was typed in.', inline = False)
     embed.add_field(name = '%listen <channel>', value = 'Designates channel to be monitored for links. Defaults to the channel it was typed in.', inline = False)
     embed.add_field(name = '%ignore <channel>', value = 'Designates a channel to be ignored. Defaults to the channel it was typed in.', inline = False)
 
